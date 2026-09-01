@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boilerplate Presentación Interactiva - MMCall Academy</title>
+  <!-- Outfit & Inter Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --mmcall-red: #e53935;
+      --mmcall-blue: #1e3a8a;
+      --academy-purple: #9c89f5;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Contenedor adaptativo de 16:9 sin zoom restrictivo */
+    #scale-container {
+      width: 1280px;
+      height: 820px;
+      position: relative;
+      background: radial-gradient(circle at 10% 20%, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.9) 90%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      transform-origin: center center;
+    }
+
+    /* Cabecera oficial */
+    header {
+      height: 70px;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo-text-academy {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--text-main) 30%, var(--academy-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Área de Slides */
+    #slide-viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Tarjetas de Vidrio (Glassmorphism) */
+    .glass-card {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+    }
+
+    /* Contenedor de Texto con scroll automático */
+    .scrollable-panel {
+      overflow-y: auto;
+      max-height: 480px;
+      padding-right: 0.5rem;
+    }
+
+    /* Scrollbar personalizada */
+    .scrollable-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+    .scrollable-panel::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 4px;
+    }
+    .scrollable-panel::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    .scrollable-panel::-webkit-scrollbar-thumb:hover {
+      background: var(--academy-purple);
+    }
+
+    /* Controles inferiores */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    /* Lightbox Modal de Imágenes */
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #lightbox-img {
+      max-width: 90%;
+      max-height: 85%;
+      object-fit: contain;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scale-container">
+    <header>
+      <div class="logo-container">
+        <span class="logo-text-academy">MMCALL ACADEMY</span>
+      </div>
+      <div>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Soporte & Desarrollo (S&D)</span>
+      </div>
+    </header>
+
+    <div id="slide-viewport">
+      <!-- Diapositiva 1 -->
+      <section class="slide active" id="slide-1">
+        <div class="glass-card" style="margin: auto; text-align: center; max-width: 600px;">
+          <h1 style="font-family: 'Outfit'; font-size: 2.2rem; color: var(--academy-purple); margin-bottom: 1rem;">Bienvenidos a la Capacitación</h1>
+          <p style="color: var(--text-muted);">Usa las flechas del teclado o los controles inferiores para navegar.</p>
+        </div>
+      </section>
+
+      <!-- Diapositiva 2 -->
+      <section class="slide" id="slide-2">
+        <div class="glass-card">
+          <h2 style="font-family: 'Outfit'; color: var(--academy-purple); margin-bottom: 1rem;">Descripción Técnica</h2>
+          <div class="scrollable-panel">
+            <p>Este panel soporta texto largo y no se cortará bajo ninguna resolución gracias a la scrollbar.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="controls">
+      <button id="btn-prev">Anterior</button>
+      <span id="slide-indicator">Diapositiva 1 de 2</span>
+      <button id="btn-next">Siguiente</button>
+    </div>
+  </div>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Zoom de imagen">
+    <img id="lightbox-img" src="" alt="Zoom de captura de pantalla">
+  </div>
+
+  <script>
+    // Escalado adaptativo 16:9
+    function adjustScale() {
+      const container = document.getElementById('scale-container');
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const scale = Math.min(w / 1280, h / 820);
+      container.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', adjustScale);
+    window.addEventListener('load', adjustScale);
+
+    // Navegación simple
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const indicator = document.getElementById('slide-indicator');
+
+    function showSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      indicator.textContent = `Diapositiva ${currentSlide + 1} de ${slides.length}`;
+    }
+
+    document.getElementById('btn-prev').addEventListener('click', () => showSlide(currentSlide - 1));
+    document.getElementById('btn-next').addEventListener('click', () => showSlide(currentSlide + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+      if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+    });
+  </script>
+</body>
+</html>
