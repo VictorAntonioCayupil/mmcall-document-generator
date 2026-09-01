@@ -13,40 +13,48 @@ Use this skill to create, structure, and format educational and technical resour
 
 ## 1. Word / PDF Document Design Guidelines
 
-All printable manuals and guides must adhere to the following formatting specifications:
+All printable manuals and guides must adhere to the following formatting specifications. These were verified field-by-field against `resources/template_manual.py`'s output *and* two independently published documents in `REPOSITORIO MMCALL ACADEMY\SyD\` from unrelated product families (`SENSORES\Sensor portillon\S_AlertaPermitetral.docx` and `T02\MANUAL T02 PAGER.docx`) — both use identical fonts, colors and structure, so this is the real company-wide standard, not one document's choice. An earlier version of this guide said `Arial` and a navy-blue/lila-purple/green palette; that was never correct — don't revert to it.
 
 ### Page Layout and Geometry
 *   **Margins:** Exact 1.0 inch (2.54 cm) on all four sides.
 *   **Page Setup:** First page header/footer must be different (disabled on the cover page, enabled on pages 2+).
 
-### Fonts and Colors
-*   **Primary Font:** `Arial` (Charcoal `#2C3E50` for general text, 10.5pt, line spacing 1.15, space after paragraph 6pt).
-*   **Primary Accent Color:** Navy Blue `#1F3A8A` (used for main titles and Heading 1).
-*   **Secondary Accent Color:** Lila Purple `#9C89F5` (used for "MMCALL ACADEMY" and Heading 2).
-*   **Success Color:** Green `#27AE60` (used for seal certifications).
+### Fonts and Colors (exact values, verified)
+*   **Primary Font:** `Calibri` for everything except the portada eyebrow line (below). Body text color `#333333`, no explicit size override needed beyond `Normal` style at 11pt.
+*   **Color tokens:**
+    ```
+    Red        #E30613   main title, page-2 title repeat, table header fill
+    Lila       #9C89F5   "ACADEMY" half of the brand text, portada eyebrow
+    Dark gray  #404040   "MMCALL" half of the brand text, all section headings
+    Med gray   #7F8C8D   header/footer running text (pages 2+)
+    Light gray #808080   portada subtitle, "Sello de Calidad" line
+    Body text  #333333
+    ```
+    There is no green anywhere and no navy blue anywhere — those were an invented palette from an earlier version of this guide.
 
 ### Headers and Footers (Pages 2+)
-*   **Header:** A 1x2 grid table. 
+*   **Header:** A 1x2 grid table.
     *   Left cell: Empty.
-    *   Right cell: Aligned right, 8.5pt Arial, Gray `#7F8C8D` text: `MMCALL ACADEMY  |  Manual Técnico - [Nombre del Equipo]`
-*   **Footer:** Aligned left, 8.5pt Arial, Gray `#7F8C8D` text: `S&D Mmcall Paging Services LTDA.`
+    *   Right cell: Aligned right, three runs in sequence — `MMCALL ` (10pt, bold, `#404040`) + `ACADEMY` (10pt, bold, `#9C89F5`) + `  |  [Nombre del Documento]` (9.5pt, `#7F8C8D`). Not one flat-colored string.
+*   **Footer:** Aligned left, 9pt Calibri, `#7F8C8D`: `S&D Mmcall Paging Services LTDA.`
 
 ### Document Cover Page Structure
-1.  **Header Title:** `PROGRAMA DE CAPACITACIÓN ACADÉMICA` (Arial 13pt, bold, Navy Blue `#1F3A8A`, centered).
-2.  **Subtitle:** `MMCALL ACADEMY` (Arial 22pt, bold, Lila `#9C89F5`, centered).
-3.  **Logo:** Center-aligned image `logo_mmcall_nobg.png` (width 2.5 inches).
-4.  **Main Title:** `Manual Técnico - [Nombre del Dispositivo]` (Arial 18pt, bold, Navy Blue `#1F3A8A`, centered).
-5.  **Subtopic:** `[Detalle de Configuración o Método]` (Arial 12pt, Gray `#7F8C8D`, centered).
-6.  **Quality Certification:** `Sello de Calidad MMCall Academy` (Arial 11pt, bold, italic, Green `#27AE60`, centered).
-7.  **Metadata Footer:** `Soporte y Desarrollo (S&D) - MMCall Paging Services LTDA. - Chile` (Arial 9.5pt, Gray `#7F8C8D`, centered).
+1.  **Header Title:** `PROGRAMA DE CAPACITACIÓN ACADÉMICA` — **`Consolas`** (monospace, the one deliberate font departure), 9pt, bold, Lila `#9C89F5`, centered.
+2.  **Brand line:** `MMCALL ` (Calibri 24pt bold `#404040`) + `ACADEMY` (Calibri 24pt bold `#9C89F5`) — two runs, two colors, centered.
+3.  **Logo:** Center-aligned image `logo_mmcall_nobg.png` (width 2.5 inches) — the real file, never a drawn/placeholder badge.
+4.  **Main Title:** the document's own name (e.g. `Manual Técnico - [Dispositivo]`), Calibri 26pt bold, **Red `#E30613`**, centered.
+5.  **Subtitle:** one line of context, Calibri 13pt, Light gray `#808080`, centered.
+6.  **Quality Certification:** `Sello de Calidad MMCall Academy`, Calibri 10pt, **not bold**, italic, Light gray `#808080` (no green anywhere).
+7.  **Metadata Footer:** `Soporte y Desarrollo (S&D) - MMCall Paging Services LTDA. - Chile`, Calibri 9.5pt, Med gray `#7F8C8D`, centered.
+8.  **Page break, then a title repeat:** the same main title text again at the top of page 2 (Calibri 18pt bold, Red `#E30613`, centered) before the first `add_heading_1` — present in both reference documents, easy to miss if copying only the portada block.
 
 ### Body Styling
 *   **Headings:**
-    *   **Heading 1:** 15pt, bold, Navy Blue, space before 18pt, space after 6pt.
-    *   **Heading 2:** 12.5pt, bold, Lila Purple, space before 12pt, space after 4pt.
+    *   **Heading 1:** 14pt, bold, Dark gray `#404040` (not navy, not lila), space before 18pt, space after 6pt.
+    *   **Heading 2:** 12pt, bold, Dark gray `#404040` — same color as Heading 1, only the size differs.
 *   **Bullet Points:** Use standard list bullets with a bold prefix run for clarity (e.g., `• **1. Paso:** Explicación.`).
-*   **Zebra Tables:** Centered tables, white text on `#1F3A8B` background for header row. Alternate data rows with `#F2F4F7` background. Custom cell padding: 100 dxa top/bottom, 120 dxa left/right.
-*   **Images:** Centered, width 4.5 inches. Include a caption below in Arial 9pt italic gray: `Figura: [Descripción]`.
+*   **Zebra Tables:** Centered tables, white text on **`#E30613`** (red) background for the header row. Alternate data rows `#F2F2F2` / `#FFFFFF` (not `#F2F4F7`). Use `add_zebra_table()` from the template rather than rebuilding this per-document — it already implements the padding and shading.
+*   **Images:** Centered, width 4.5 inches. Include a caption below in Calibri 9pt italic, Med gray `#7F8C8D`: `Figura: [Descripción]`.
 *   **Image Placement:** Always place configuration screenshots of the software at the **beginning** of their respective section or step so the user knows what values to enter beforehand.
 
 --------------------------------------------------------------------------------
