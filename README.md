@@ -10,22 +10,23 @@
 Si estás usando **Claude Code** en la terminal, simplemente indícale:
 ```text
 Claude, clona e instala la skill de MMCall Academy desde este repositorio:
-git clone https://github.com/TU_USUARIO/mmcall-document-generator.git ~/.claude/skills/mmcall-document-generator
+git clone https://github.com/VictorAntonioCayupil/mmcall-document-generator
 ```
+Claude clona el repositorio y copia `SKILL.md` + `resources/` a `~/.claude/skills/mmcall-document-generator` (en Windows, `%USERPROFILE%\.claude\skills\mmcall-document-generator`) — no hace falta ejecutar el comando `git clone` completo con la ruta de destino, basta con pedirlo así.
 
 ### 💻 Método 2: Instalación por Script (PowerShell / Bash)
 Clona el repositorio y ejecuta el instalador:
 
 **En Windows (PowerShell):**
 ```powershell
-git clone https://github.com/TU_USUARIO/mmcall-document-generator.git
+git clone https://github.com/VictorAntonioCayupil/mmcall-document-generator.git
 cd mmcall-document-generator
 .\install.ps1
 ```
 
 **En Linux / Mac / WSL:**
 ```bash
-git clone https://github.com/TU_USUARIO/mmcall-document-generator.git
+git clone https://github.com/VictorAntonioCayupil/mmcall-document-generator.git
 cd mmcall-document-generator
 bash install.sh
 ```
@@ -52,11 +53,14 @@ La IA aplicará automáticamente:
 * **Compilación a PDF:** Conversión automática de alta fidelidad vía `docx2pdf`.
 
 ### 2. 🖥️ En Presentaciones Interactivas (HTML5):
-* **Glassmorphic UI:** Fondo oscuro (`#0f172a`) con tarjetas de vidrio translúcidas (`backdrop-filter: blur(16px)`).
+* **Glassmorphic UI:** Fondo oscuro (`#0f172a` en la plantilla base; los documentos ya publicados en `REPOSITORIO MMCALL ACADEMY` usan `#07090e` / `#0f131f` — cualquiera de las dos variantes es válida, mantener consistencia dentro de un mismo documento) con tarjetas de vidrio translúcidas (`backdrop-filter: blur(16px)`).
+* **Tipografía:** `Inter` (texto general) + `Outfit` (títulos y acentos) + `Share Tech Mono` (bloques de comandos, código o terminal — se usa en las presentaciones reales del repositorio aunque no viene declarada en la plantilla base).
 * **Escalado Adaptativo 16:9:** Optimizado para proyectores y pantallas de 32 pulgadas en terreno.
 * **Paneles con Scroll:** Scrollbars suaves (`overflow-y: auto; max-height: 480px;`) para no cortar textos explicativos largos.
 * **Zoom Lightbox Modal:** Ampliación accesible de capturas mediante click y atajos de teclado (`Tab`, `Enter`, `Espacio`, `Escape`).
-* **Cuestionario Evaluativo:** Módulo de evaluación de 5 preguntas técnicas con retroalimentación en tiempo real y resumen de puntaje con el lema de MMCall Academy.
+* **Cuestionario Evaluativo:** Módulo de evaluación de 5 preguntas técnicas (puede ampliarse según el contenido) con retroalimentación en tiempo real y resumen de puntaje con el lema de MMCall Academy.
+
+> 📁 **Ejemplos reales:** `C:\Users\vcayu\Desktop\REPOSITORIO MMCALL ACADEMY\SyD\` contiene los manuales y presentaciones ya publicados (ESL, RELOJES NS818, SENSORES, T02, etc.) — son la referencia más confiable de cómo debe verse un documento terminado. Ante cualquier duda de estilo que este README o `SKILL.md` no resuelvan, revisar un documento comparable ahí antes de improvisar.
 
 ---
 

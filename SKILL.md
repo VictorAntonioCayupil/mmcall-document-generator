@@ -53,23 +53,42 @@ All printable manuals and guides must adhere to the following formatting specifi
 
 ## 2. Interactive Presentation Design Guidelines
 
-HTML slides must match the custom glassmorphism style sheet:
+`resources/template_presentation.html` is not an interpretation of "glassmorphism" — its tokens, class names and structure were extracted directly from a real published presentation (`REPOSITORIO MMCALL ACADEMY\SyD\SENSORES\Sensor portillon\presentacion_autocontenida.html`). Start every new presentation from that file and keep its class names; inventing new ones (or a different palette) is how a generated deck ends up not resembling the rest of the company's material — this happened once already and had to be redone.
+
+### Fonts and Colors (exact tokens, don't approximate)
+*   **Fonts:** `Inter` (body text) + `Outfit` (headings, brand text, buttons) + `Share Tech Mono` (badges, code/command snippets, the slide counter) — all three loaded via one Google Fonts link, see the template's `<head>`.
+*   **Color tokens** (CSS custom properties, copy verbatim):
+    ```css
+    --bg-primary: #07090e;      --bg-secondary: #0f131f;
+    --text-main: #f3f4f6;       --text-muted: #9ca3af;
+    --mmcall-red: #e30613;      --mmcall-red-hover: #b8050f;
+    --accent-blue: #2979ff;     --accent-green: #00e676;
+    --accent-orange: #f59e0b;   --accent-gold: #ffb300;
+    --accent-purple: #d500f9;
+    --glass-bg: rgba(15, 20, 32, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    ```
+    `#e30613` is the real MMCall red — not `#e53935`, which is close but wrong. `--accent-gold` (`#ffb300`) is the card-title / active-dot / badge color, not the lila purple — lila (`--accent-purple`, `#d500f9`) is reserved for the "ACADEMY" half of the brand text.
 
 ### Layout and Scaling
-*   **Base Container:** Fit to screen with adaptive scaling without forcing limits. Perfect for 32" TV outputs in the field.
-*   **Card Container:** Glassmorphic layout (`backdrop-filter: blur(16px)`).
-*   **Card Text Scroll:** Any list description panel containing dense text (e.g., button mapping or list of codes) must have:
-    ```css
-    overflow-y: auto;
-    max-height: 480px;
-    ```
-    This prevents truncation when text size is scaled up for short-sighted accessibility.
+*   **Fixed 16:9 stage:** a `1280×720` container (`.slides-scale-container`), scaled to fit the viewport with a JS `transform: scale()` — not a fluid/responsive layout. See the template's `adjustScale()`.
+*   **Ambient glow:** two blurred radial-gradient circles behind the content (`.glow-1` red top-right, `.glow-2` blue bottom-left) — subtle, not decoration to overdo.
+*   **`h2` signature style:** every section heading gets a solid `4px` red left border (`border-left: 4px solid var(--mmcall-red)`) — this is the single most recognizable visual signature across real documents; don't drop it.
+*   **Cards:** `.glass-card` (`background: var(--glass-bg)`, `border-radius: 12px`, `backdrop-filter: blur(10px)`) with an emoji-prefixed `<h3>` in gold and a muted `<p>` — this is the primary content unit, used far more than plain paragraphs.
+*   **Screenshots:** `.shot-frame` (not a plain `<img>`) — bordered, black background, `object-fit: contain`, with a small "🔍 ampliar" hint and `cursor: zoom-in`.
+*   **Dense text panels** (command lists, long bullet lists) get `overflow-y: auto; max-height: 480px;` so they scroll instead of truncating.
+
+### Header, Logo and Branding
+*   **Real logo, not a placeholder:** the header and the cover slide's `.cover-seal` both embed the actual `logo_mmcall_nobg.png` (Base64 data URI) as an `<img class="logo-img">` — never a CSS-drawn badge or initials standing in for the logo.
+*   **Header layout:** logo image → `.brand-divider` → `.brand-text` (`MMCALL <span>ACADEMY</span>`, the span in `--accent-purple`) → `.brand-divider` → `.header-title` (the specific document's name/subtitle). Header has a `2px solid var(--mmcall-red)` bottom border.
+*   **Cover slide:** `.badge-gold` eyebrow pill → `.main-title` (gradient-clipped white-to-gray text) → `.main-subtitle` → `.cover-seal` (small logo + "Sello de Calidad MMCall Academy").
 
 ### Navigation and Interactions
-*   **Header:** Standard header with logos and a right-aligned compact session badge (`0.85rem`).
+*   **Dots, not a session badge:** `.dots-navigation` in the header, one `.dot-nav` per slide, the active one gold and glowing (`box-shadow: 0 0 8px var(--accent-gold)`).
+*   **Footer controls:** `.nav-btn` Anterior/Siguiente buttons plus a `Share Tech Mono` slide counter (`01 / 09` style), not just arrows.
 *   **Keyboard Controls:** Map arrow keys `ArrowLeft` / `ArrowRight` to change slides.
-*   **Image Lightbox:** Expandable screenshot overlay when clicking images. Keyboard focusable (`tabindex="0"`) and triggerable via `Enter` / `Space`, closeable via `Escape`.
-*   **Interactive Quiz:** Include a 5-question evaluation quiz on the final slide with instant option validation and a final score summary container.
+*   **Image Lightbox:** Expandable screenshot overlay when clicking a `.shot-frame`. Keyboard focusable (`tabindex="0"`) and triggerable via `Enter` / `Space`, closeable via `Escape` or clicking outside the image.
+*   **Interactive Quiz:** `.quiz-opt-btn` options that lock and color on click (`.correct` green, `.incorrect` red, revealing the right answer), a final score screen, and a retry button. 5 questions is the usual count but scale it to how much the document actually covers — don't pad or cut content to force exactly 5.
 
 --------------------------------------------------------------------------------
 
@@ -78,3 +97,7 @@ HTML slides must match the custom glassmorphism style sheet:
 Use the template scripts stored in the skill resources to build new deliverables quickly:
 *   [template_manual.py](./resources/template_manual.py) - Python script using `docx` and `docx2pdf` to compile manuals.
 *   [template_presentation.html](./resources/template_presentation.html) - Base boilerplate for interactive slideshows.
+
+### Reference examples (ground truth)
+
+`C:\Users\vcayu\Desktop\REPOSITORIO MMCALL ACADEMY\SyD\` holds the manuals and presentations already published for other MMCall products (ESL, RELOJES NS818, SENSORES — including the portillón sensor's own technical/command manuals, T02, PANTALLA M4, etc.). When this guide and the templates don't settle a styling question, open a comparable finished document there instead of guessing — it is the more authoritative source since it reflects what has actually shipped. Note that the sensor-side "Manual_Tecnico_Sensor_Portillon" / "Manual_Tecnico_Comandos_Portillon" / "S_AlertaPermitetral" documents in `SENSORES/Sensor portillon/` cover the MMCall V.133 hardware and its raw serial command set — they are a different document from an operating manual for the Diag-TOOL app itself; don't conflate the two when generating either one.
