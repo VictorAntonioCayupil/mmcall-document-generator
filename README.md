@@ -68,15 +68,26 @@ La IA aplicará automáticamente:
 
 ```text
 mmcall-document-generator/
-├── SKILL.md                          # Reglas y directrices completas que lee la IA
+├── SKILL.md                          # Reglas y directrices completas que lee la IA (Manuales, PPTX, HTML, Video, B2B)
 ├── CLAUDE.md                         # Directiva de auto-activación para Claude Code
 ├── README.md                         # Documentación y guía de instalación
 ├── install.ps1                       # Instalador automático para Windows
 ├── install.sh                        # Instalador automático para Linux/Mac
 ├── .gitignore                        # Archivos excluidos del control de versiones
+├── b2b_marketing/                    # Suite de 7 skills B2B de élite (Conversion Factory / Corey Haines)
+│   ├── sales-enablement/             # Battle cards, torpedos internos y fichas ejecutivas
+│   ├── product-marketing/            # Posicionamiento, pilares de valor e ICP retail
+│   ├── video/                        # Beat sheets (edit-anatomy) y pipelines de video IA/código
+│   ├── copywriting/                  # Redacción persuasiva B2B sin clichés de IA
+│   ├── copy-editing/                 # Control editorial, claims demostrables y voz activa
+│   ├── competitor-profiling/         # Benchmarking objetivo frente a marcas globales
+│   └── offers/                       # Estructuración de ofertas piloto (PoC) de bajo riesgo
 └── resources/
     ├── template_manual.py            # Generador de Word y PDF con python-docx
-    └── template_presentation.html    # Boilerplate interactivo HTML/CSS/JS
+    ├── template_guion_presentador.py # Generador de "Torpedos" con cronología y objeciones
+    ├── template_pptx.py              # Generador de presentaciones PPTX 16:9 Dark Studio
+    ├── template_presentation.html    # Boilerplate interactivo HTML/CSS/JS con visores 3D
+    └── template_video_narrated.py    # Pipeline de locución neuronal con OmniVoice y FFmpeg
 ```
 
 ---

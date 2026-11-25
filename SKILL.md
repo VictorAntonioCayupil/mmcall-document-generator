@@ -263,3 +263,49 @@ En la carpeta `resources/` de esta skill se encuentran disponibles los scripts b
 *   `template_pptx.py`: Generador de presentaciones PowerPoint 16:9 bajo el estándar MMCall Dark Studio.
 *   `template_presentation.html`: Plantilla base HTML con partículas holográficas, visores interactivos, diapositivas 16:9 secuenciales y quiz con Web Audio.
 *   `template_video_narrated.py`: Pipeline completo de locución neuronal con la voz de Victor Cayupil y renderizado de video 1080p con FFmpeg.
+
+---
+
+## 9. Framework B2B de Marketing, Ventas y Sales Enablement (MMCall Academy)
+
+Para asegurar que todo entregable de MMCall Academy (manuales, torpedos, diapositivas y videos) maximice su impacto comercial y facilite el cierre de ventas corporativas, se deben aplicar de forma obligatoria los siguientes pilares derivados del estándar B2B de *Conversion Factory / Corey Haines* (disponibles en la subcarpeta `b2b_marketing/`):
+
+### 1. Fichas de Batalla ("Battle Cards") y Manejo de Objeciones (`sales-enablement`)
+* **Comparativas Objetivas frente a la Competencia:** Estructurar matrices de criterios duros (Costo inicial, método de conexión, velocidad de refresco, vida útil de baterías, cumplimiento SERNAC) frente a fabricantes globales (Pricer, SES-imagotag, Hanshow, SoluM).
+* **Manejo Proactivo de Objeciones (Sección Obligatoria en Torpedos):**
+  * *¿Por qué cambiar etiquetas si el papel es barato?* -> Cuantificar el costo oculto de horas/hombre de cambio manual de flejes, errores humanos de digitación y las severas multas de la Ley del Consumidor (SERNAC) por discrepancia de precio entre góndola y caja.
+  * *¿Qué pasa si se cae la red o el internet?* -> Explicar la autonomía del hardware bi-estable E-ink: la pantalla retiene la imagen y el precio de forma permanente sin energía; la modalidad StandAlone funciona 100% offline con el teléfono celular vía BLE 5.0.
+  * *¿Por qué empezar con MMCall?* -> Escalabilidad garantizada: el cliente puede adquirir 50 etiquetas en modo StandAlone hoy y sumar Gateways Minew G1 mañana sin tener que cambiar el hardware.
+
+### 2. Matriz de Propuesta de Valor y Posicionamiento (`product-marketing`)
+* **Traducción de Especificación Técnica a Beneficio de Negocio:**
+  * En lugar de: *"Pantalla E-ink bi-estable de 2.9 pulgadas con chip Bluetooth 5.0"*
+  * Redactar: *"Pantalla de tinta electrónica tipo papel de 2.9 pulgadas: 180° de ángulo de visión sin reflejos, cero consumo de energía mientras la imagen está congelada, y actualización directa en pasillo en 3 a 5 segundos con el teléfono del operador."*
+* **Segmentación por Audiencia (ICP):**
+  * **Gerentes de Operaciones y Retail:** Énfasis en reducción de mermas, optimización de tiempos de reposición y preparación rápida de pedidos (*Pick-by-Light LED* multicolor).
+  * **Gerentes de Finanzas / Compras:** Retorno de la inversión (ROI amortizable en 6 a 12 meses) y protección de inversión escalable.
+  * **Jefes de Tienda y Operadores:** Facilidad de uso, cero cables en góndola y aplicación móvil intuitiva en español.
+
+### 3. Redacción Persuasiva y Control Editorial (`copywriting` & `copy-editing`)
+* **PROHIBICIÓN TOTAL DE "AI TELLS" (Clichés de Inteligencia Artificial):**
+  * Está estrictamente prohibido usar frases vacías o típicas de LLM como:
+    * *"En un mundo digital en constante evolución..."*
+    * *"No es solo una solución, es una revolución..."*
+    * *"Descubra una experiencia sin fisuras (*seamless*)..."*
+    * *"Sumérjase en la vanguardia tecnológica..."*
+* **Regla de Oro:** Utilizar voz activa, oraciones directas, datos duros y beneficios tangibles. Cada afirmación comercial debe ser demostrable técnicamente.
+
+### 4. Estructura de Guiones de Video Comercial (`edit-anatomy`)
+Todo video comercial o promocional de producto producido por MMCall Academy debe seguir la cronología modular de 6 actos:
+1. **Acto 1 — El Gancho y la Problemática (0 a 18s):** El dolor del retail tradicional (costos de papel, demoras y multas SERNAC).
+2. **Acto 2 — La Solución Ágil (18 a 35s):** Presentación del producto base (ej. Modo StandAlone con Cloud Tag BLE 5.0).
+3. **Acto 3 — La Solución Centralizada (35 a 54s):** Automatización masiva y conectividad cloud (ej. Modo Online con Gateway G1 y LED Pick-by-Light).
+4. **Acto 4 — Cuadro Comparativo de Decisión (54 a 72s):** Matriz visual de criterios estratégicos según el tamaño del local.
+5. **Acto 5 — Escalabilidad y Protección de la Inversión (72 a 90s):** Garantía de compatibilidad de hardware entre ambas modalidades.
+6. **Acto 6 — Respaldo Corporativo y Llamado a la Acción (90 a 108s):** Garantía, soporte local chileno, integración con ERP/POS y datos de contacto oficiales.
+
+### 5. Estructuración de Ofertas Piloto de Bajo Riesgo (`offers`)
+* Facilitar el cierre comercial ofreciendo programas piloto (*PoC - Proof of Concept*):
+  * Kit de evaluación de 50 etiquetas + App móvil StandAlone sin costo de servidores ni cableado.
+  * Garantía de migración transparente hacia red de Gateways Online.
+
